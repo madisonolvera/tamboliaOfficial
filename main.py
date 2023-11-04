@@ -4,10 +4,12 @@ from kivy.uix.widget import Widget
 from kivy.app import App
 from datetime import datetime as dt
 import time
+from kivy.core.window import Window
 
 
 class TamboliaApp(App):
-    pass
+    def build(self):
+        Window.clearcolor = (32/255, 67/255, 80/255, 1)
 
 
 # define different screens
@@ -102,18 +104,27 @@ class SixthWindow(Screen):
         word = rev_dict[result]
 
         print(word)
+class SeventhWindow(Screen):
+    pass
+
+class EighthWindow(Screen):
+    pass
+
+class NinthWindow(Screen):
+    pass
+
+class TenthWindow(Screen):
+    pass
 
 class WindowManager(ScreenManager):
     INFLUENCES = dict()
     INFLUENCES['game_start'] = dt.now()
 
-
 class MyBoxLayout(Widget):
     pass
-
-# def press(self):
-# generate random dice number and display the number
-# def press(self):
+    # def press(self):
+    # generate random dice number and display the number
+    # def press(self):
 
 
 if __name__ == '__main__':
