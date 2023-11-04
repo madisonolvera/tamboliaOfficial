@@ -1,0 +1,295 @@
+WindowManager:
+	FirstWindow:
+	SecondWindow:
+	ThirdWindow:
+	FourthWindow:
+	FifthWindow:
+	SixthWindow
+
+<FirstWindow>:
+	name: "first"
+
+    FloatLayout:
+        orientation: "vertical"
+		size: root.width, root.height
+        Label:
+            id: "title"
+            text: "The Tambolian Oracle"
+            font_size: 48
+            size_hint: None, None
+            size: 150, 50
+            pos_hint: {'center_x':0.5, 'center_y':0.9}
+            halign: "center"
+
+        Label:
+            id: "subtitle"
+            text: "The Truth is not hidden, just deeply unnoticed"
+            font_size: 32
+            size_hint: None, None
+            size: 150, 50
+            pos_hint: {'center_x':0.5, 'center_y':0.7}
+        Button:
+            text: "Oracle"
+            font_size: 32
+            size_hint: None, None
+            size: 150, 50
+            pos_hint: {'center_x':0.5, 'center_y':0.5}
+            halign: "center"
+            on_release:
+                app.root.current = "fourth"
+                root.manager.transition.direction = "left"
+        Button:
+            text: "about"
+            font_size: 32
+            size_hint: None, None
+            size: 150, 50
+            pos_hint: {'center_x':0.5, 'center_y':0.4}
+            on_release:
+                app.root.current = "second"
+                root.manager.transition.direction = "right"
+        Button:
+            text: "journal"
+            font_size: 32
+            size_hint: None, None
+            size: 150, 50
+            pos_hint: {'center_x':0.5, 'center_y':0.3}
+            on_release:
+                app.root.current = "third"
+                root.manager.transition.direction = "up"
+
+
+<SecondWindow>:
+    name: "second"
+    BoxLayout:
+		orientation: 'vertical'
+		size: root.width, root.height
+
+		Label:
+			text: "about screen"
+			font_size: 32
+
+		Button:
+			text: "go back"
+			font_size: 32
+			on_release:
+				app.root.current = "first"
+				root.manager.transition.direction = "left"
+
+<ThirdWindow>:
+    name: "third"
+
+    FloatLayout:
+		orientation: 'vertical'
+		size: root.width, root.height
+
+		Label:
+			text: "journal screen"
+			font_size: 32
+            size_hint: None, None
+            size: 150, 50
+            pos_hint: {'center_x':0.5, 'center_y':0.9}
+
+		TextInput:
+			id: text_input
+			multiline: True
+			size_hint: None, None
+			size: root.height/3, root.height/2
+			pos_hint: {'center_x':0.5, 'center_y':0.5}
+		Button:
+		    #'save button'
+		    text: "save"
+			font_size: 12
+			size_hint: (.1, .1)
+            pos: (10, 10)
+            pos_hint: {'center_x':0.5, 'center_y':0.3}
+			height: 10
+			on_release: root.save_data(self)
+
+		Button:
+			text: "go back"
+			font_size: 12
+			size_hint: (.1, .1)
+            pos: (10, 10)
+            pos_hint: {'center_x':0.1, 'center_y':0.1}
+			height: 15
+			on_release:
+				app.root.current = "first"
+				root.manager.transition.direction = "right"
+
+			on_release:
+				app.root.current = "first"
+				root.manager.transition.direction = "down"
+
+<FourthWindow>:
+
+    name: "fourth"
+    FloatLayout:
+		orientation: 'vertical'
+		size: root.width, root.height
+
+        Label:
+            text: "f"
+            font_size: 32
+            pos_hint: {'center_x':0.5, 'center_y':0.5}
+
+		Label:
+			text: "Wheel of life"
+			font_size: 32
+			pos_hint: {'center_x':0.5, 'center_y':0.9}
+		Label:
+		    text: "Relax - take a breath - ask a question."
+		    font_size: 26
+		    halign: "center"
+            valign: "middle"
+            size: root.height/3, root.height/2
+            pos_hint: {'center_x':0.5, 'center_y':0.8}
+        TextInput:
+            id: text_input
+            hint_text: "ask a question"
+            size_hint: None, None
+			size: root.height/2, root.height/2
+			pos_hint: {'center_x':0.5, 'center_y':0.5}
+
+		Button:
+		    #roll the dice button
+		    text: "roll the dice"
+		    font_size: 20
+		    size: 125, 50
+            size_hint: None, None
+            pos_hint: {'center_x':0.5, 'center_y':0.2}
+			on_press: root.press(), root.save_data()
+
+		Button:
+		    #'go back home button'
+		    text: "home"
+			font_size: 12
+			size_hint: (.1, .1)
+            pos: (10, 10)
+            pos_hint: {'center_x':0.1, 'center_y':0.1}
+			height: 10
+			on_release:
+				app.root.current = "first"
+				root.manager.transition.direction = "right"
+		Button:
+		    #button can be hidden or more opaque until touched
+			text: "next roll"
+			font_size: 12
+		    size: 125, 50
+            size_hint: None, None
+            pos_hint: {'center_x':0.5, 'center_y':0.1}
+			height: 10
+			on_release:
+				app.root.current = "sixth"
+				root.manager.transition.direction = "left"
+		Button:
+		    #the journal button
+		    text: "journal"
+		    font_size: 12
+		    size_hint: .1, .1
+            pos: root.width/4, 10
+            pos_hint: {'center_x':0.9, 'center_y':0.1}
+            on_release:
+                app.root.current = "fifth"
+                root.manager.transition.direction = "up"
+
+
+<FifthWindow>:
+    name: "fifth"
+
+    FloatLayout:
+        id: float_layout
+		orientation: 'vertical'
+		size: root.width, root.height
+
+		Label:
+			text: "journal screen within a game"
+			font_size: 32
+            size_hint: None, None
+            size: 150, 50
+            pos_hint: {'center_x':0.5, 'center_y':0.9}
+
+		TextInput:
+			id: text_input
+			multiline: True
+			size_hint: None, None
+			size: root.height/3, root.height/2
+			pos_hint: {'center_x':0.5, 'center_y':0.5}
+		Button:
+		    #'save button'
+		    text: "save"
+			font_size: 12
+			size_hint: (.1, .1)
+            pos: (10, 10)
+            pos_hint: {'center_x':0.5, 'center_y':0.3}
+			height: 10
+			on_release: root.save_data(self)
+		Button:
+		    #'go back to previous page button'
+		    text: "return"
+			font_size: 12
+			size_hint: (.1, .1)
+            pos: (10, 10)
+            pos_hint: {'center_x':0.9, 'center_y':0.1}
+			height: 10
+			on_release:
+				app.root.current = "fourth"
+				root.manager.transition.direction = "down"
+		Button:
+		    #'go back home button'
+		    text: "home"
+			font_size: 12
+			size_hint: (.1, .1)
+            pos: (10, 10)
+            pos_hint: {'center_x':0.1, 'center_y':0.1}
+			height: 10
+			on_release:
+				app.root.current = "first"
+				root.manager.transition.direction = "right"
+
+<SixthWindow>:
+    name: "sixth"
+
+    FloatLayout:
+        id: float_layout
+		orientation: 'vertical'
+		size: root.width, root.height
+
+		Label:
+		    #roll two (2)
+			text: "intensity of experience"
+			font_size: 32
+            size_hint: None, None
+            size: 150, 50
+            pos_hint: {'center_x':0.5, 'center_y':0.9}
+
+		Button:
+		    #roll the dice button. this should be blinking? dice blinking?
+		    text: "roll the dice"
+		    font_size: 20
+		    size: 125, 50
+            size_hint: None, None
+            pos_hint: {'center_x':0.5, 'center_y':0.2}
+			on_press: root.pressTwo()
+
+		Button:
+		    #button can be hidden or more opaque until touched
+			text: "go back"
+			font_size: 12
+			size_hint: (.1, .1)
+            pos: (10, 10)
+            pos_hint: {'center_x':0.1, 'center_y':0.1}
+			height: 15
+			on_release:
+				app.root.current = "first"
+				root.manager.transition.direction = "right"
+
+		Button:
+		    #the journal button
+		    text: "journal"
+		    font_size: 12
+		    size_hint: .1, .1
+            pos: root.width/4, 10
+            pos_hint: {'center_x':0.9, 'center_y':0.1}
+            on_release:
+                app.root.current = "fifth"
+                root.manager.transition.direction = "up"
