@@ -1,11 +1,13 @@
-from utils.RandomGenerator import Random
-from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.uix.widget import Widget
-from kivy.app import App
-from datetime import datetime as dt
-import time
 import json
+import time
+from datetime import datetime as dt
+
+from kivy.app import App
 from kivy.core.window import Window
+from kivy.storage.jsonstore import JsonStore
+from kivy.uix.screenmanager import ScreenManager, Screen
+
+from utils.RandomGenerator import Random
 
 
 class TamboliaApp(App):
@@ -26,6 +28,9 @@ class IndexWindow(Screen):
 
 class AboutWindow(Screen):
     pass
+
+
+# Handle the case where `store.get('about')` is not a dictionary
 
 
 class JournalWindow(Screen):
@@ -151,8 +156,6 @@ class ChainLinkWindow(Screen):
         self.ids.result_label.text += f'Result: {result} - {word} - {definition}'
 
 
-
-
 class FinishWindow(Screen):
     def finish_quote(self):
         res = self.parent.INFLUENCES
@@ -179,10 +182,6 @@ class DictionaryWindow(Screen):
 class WindowManager(ScreenManager):
     INFLUENCES = dict()
     INFLUENCES['game_start'] = dt.now()
-
-
-class MyBoxLayout(Widget):
-    pass
 
 
 if __name__ == '__main__':

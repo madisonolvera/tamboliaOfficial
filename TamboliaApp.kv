@@ -85,25 +85,29 @@ WindowManager:
     BoxLayout:
 		orientation: 'vertical'
 		size: root.width, root.height
-
 		Label:
 			text: "about screen"
 			font_size: 32
-
+			size_hint: None, None
+            text_size: root.width, None
+            halign: 'center'
+            valign: 'middle'
+            pos_hint: {'center_x':0.5,'center_y':0.9}
+        Label:
+            text: 'What the Tambolian Oracle does is to explain the initial conditions concerning your question. It is up to you to figure out the information hidden within those conditions. The Tambolian Oracle encourages you to choose the next step on the path. You may or may not choose to do so. If you decide to keep choosing the next step in the Tambolian Map, you will eventually get to where you are supposed to be, as many pilgrims have done before you.'
+            size_hint: None, None
+            text_size: root.width, None
+            halign: 'center'
+            valign: 'middle'
+            pos_hint: {'center_x':0.5, 'center_y': 0.5}
 		Button:
 		    #'go back home button'
 		    text: "Home"
 		    background_normal: ''
             background_color: (78/255, 69/255, 57/255, 1)
 			font_size: 12
-			size_hint: (.1, .1)
-            pos: (10, 10)
+			size_hint: (None, None)
             pos_hint: {'center_x':0.1, 'center_y':0.1}
-			height: 10
-			on_release:
-				app.root.current = "first"
-				root.manager.transition.direction = "right"
-
 			on_release:
 				app.root.current = "first"
 				root.manager.transition.direction = "right"
